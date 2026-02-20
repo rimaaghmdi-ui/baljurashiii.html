@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+html { scroll-behavior: smooth; }
+
+body { 
+    background-color: #0b261a; 
+    background-image: url('https://images.unsplash.com/photo-1621215111956-6216447c2138?q=80&w=2070');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    color: #fff; 
+}
+
+.background-wrap { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: linear-gradient(135deg, rgba(11, 38, 26, 0.85), rgba(15, 60, 35, 0.75)); 
+    z-index: -1; 
+}
+
+/* شريط تنقل أنحف */
+.nav-city { 
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; display: flex; 
+    justify-content: space-between; align-items: center; 
+    background: rgba(10, 30, 20, 0.8); backdrop-filter: blur(10px); 
+    padding: 10px 40px; border-bottom: 2px solid #e2c775; 
+}
+.nav-city a { color: #fff; text-decoration: none; font-weight: bold; margin-left: 20px; transition: 0.3s; }
+.nav-city a:hover { color: #e2c775; }
+.brand { font-size: 1.5rem; color: #e2c775; font-weight: 900; }
+
+/* هيدر صغير ومختلف عن الرئيسية */
+.city-banner { 
+    margin-top: 60px; padding: 60px 20px 80px; text-align: center; 
+}
+.city-banner h1 { font-size: 4rem; color: #e2c775; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+.city-banner p { font-size: 1.5rem; color: #e0e0e0; }
+
+/* هيكل الـ Bento الجديد (مربعات متداخلة) */
+.bento-container { max-width: 1100px; margin: -40px auto 50px; padding: 0 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; position: relative; z-index: 2; }
+
+.bento-box { 
+    background: rgba(10, 30, 20, 0.5); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); 
+    border: 1px solid rgba(226, 199, 117, 0.2); border-radius: 20px; padding: 30px; 
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); transition: 0.3s; 
+}
+.bento-box:hover { border-color: #e2c775; transform: translateY(-3px); }
+
+/* التحكم بحجم المربعات */
+.span-2 { grid-column: span 2; }
+.span-3 { grid-column: span 3; }
+
+.bento-box h3 { color: #e2c775; font-size: 1.8rem; margin-bottom: 15px; border-bottom: 2px dashed rgba(226, 199, 117, 0.3); padding-bottom: 10px; }
+.bento-box p, .bento-box li { font-size: 1.1rem; line-height: 1.8; }
+.bento-box ul { list-style-position: inside; }
+
+/* تنسيق الطقس الجديد */
+.weather-bento { display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(226, 199, 117, 0.1), rgba(10, 30, 20, 0.6)); }
+.weather-bento .degree { font-size: 4.5rem; color: #e2c775; font-weight: 900; line-height: 1; }
+
+/* الأخبار بشكل عمودي مرتب */
+.news-list { display: flex; flex-direction: column; gap: 15px; }
+.news-item { background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 12px; border-right: 4px solid #e2c775; }
+.news-item h4 { color: #e2c775; margin-bottom: 5px; }
+
+/* الزر التفاعلي */
+.interactive-btn { width: 100%; background: #e2c775; color: #0b261a; border: none; padding: 15px; font-size: 1.2rem; font-weight: bold; border-radius: 12px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+.interactive-btn:hover { background: #f3d886; transform: scale(1.02); }
+
+/* التجاوب مع الجوال */
+@media (max-width: 768px) {
+    .bento-container { grid-template-columns: 1fr; }
+    .span-2, .span-3 { grid-column: span 1; }
+    .city-banner h1 { font-size: 3rem; }
+    .nav-city { flex-direction: column; gap: 10px; }
+    .nav-city div { margin-top: 10px; }
+}
+/* --- تنسيق حاوية الصورتين عشان تترتب جنب بعض --- */
+.dual-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* صورتين جنب بعض */
+    gap: 20px;
+    grid-column: span 2; /* ياخذون مساحة مربعين عشان التناسق في الشاشة */
+}
+
+/* تنسيق مربع الصورة الثابت */
+.image-bento {
+    padding: 0 !important;
+    overflow: hidden;
+    height: 220px; /* حددنا الطول هنا عشان ما تطلع عملاقة */
+    position: relative;
+    display: flex;
+    border-radius: 20px;
+    border: 1px solid rgba(226, 199, 117, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.image-bento img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-bento:hover img {
+    transform: scale(1.08);
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 20px 15px;
+    background: linear-gradient(to top, rgba(11, 38, 26, 0.95), transparent);
+    color: #e2c775;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    pointer-events: none;
+}
+
+/* الترتيب في شاشات الجوال */
+@media (max-width: 768px) {
+    .dual-images {
+        grid-template-columns: 1fr; /* في الجوال تصير فوق بعض */
+        grid-column: span 1;
+    }
+}
